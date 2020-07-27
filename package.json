@@ -1,0 +1,29 @@
+{
+  "name": "node_blog",
+  "version": "1.0.0",
+  "description": "zhengwei's project sample",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitee.com:js-class/node_blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "joi": "^14.0.6",
+    "art-template": "^4.13.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "dateformat": "^3.0.3",
+    "express": "^4.16.4",
+    "express-art-template": "^1.0.1",
+    "express-session": "^1.15.6",
+    "formidable": "^1.2.1",
+    "mongoose": "^5.5.5",
+    "mongoose-sex-page": "^1.2.4"
+  }
+}

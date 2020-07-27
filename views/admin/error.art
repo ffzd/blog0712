@@ -1,0 +1,30 @@
+{{extend './common/layout.art'}}
+{{block 'main'}}
+<p class="tips">{{tip}} 等待<span class="time" style="color: red;">3</span> 秒后返回首页</p>
+<div><img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3864313282,3842716210&fm=26&gp=0.jpg" alt="">
+</div>
+{{/block}}
+{{block 'script'}}
+<script>
+    // setTimeout(function () {
+
+
+    //     location.href = '/admin/login'
+    // }, 3000)
+
+    $(function () {
+        var num = 3;
+        setInterval(function () {
+            num--;
+            $(".time").html(num);
+
+            if (num == 0) {
+                // clearInterval(t);
+                location.href = "/admin/login"
+            }
+        }, 1000)
+    })
+
+
+</script>
+{{/block}}

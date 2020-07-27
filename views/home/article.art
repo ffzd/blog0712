@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>博客前台</title>
+	<link rel="stylesheet" href="/home/css/base.css">
+	<link rel="stylesheet" href="/home/css/article.css">
+</head>
+
+<body>
+	<!-- 头部框架开始 -->
+	{{include './common/header.art'}}
+	<!-- 头部框架结束 -->
+	<!-- 文章框架开始 -->
+	<div class="article">
+		<div class="w1100">
+			<div class="container">
+				<div class="article-header">
+					<h3 class="article-title">{{article.title}}</h3>
+					<div class="article-info">
+						<span class="author">{{article.author.username}}</span>
+						<span>{{dateformat(article.publishDate,'yyyy-mm-dd HH:MM:ss')}}</span>
+					</div>
+				</div>
+				<div class="article-content">
+					{{@article.content}}
+				</div>
+				<div class="article-comment">
+					<h4>评论</h4>
+					<%if(userInfo && userInfo.state==0){%>
+					<form class="comment-form" method="post" action="/home/comment">
+						<!-- 帮助表单收集和发送信息，便于后端处理数据。用户点击提交的时候，
+							隐藏域的内容也一并提交给后台，但是用户是不可见的 -->
+						<input type="hidden" name="aid" value="{{@article._id}}">
+						<input type="hidden" name="uid" value="{{@userInfo._id}}">
+						<textarea class="comment" name="content"></textarea>
+						<div class="items">
+							<input type="submit" value="提交">
+						</div>
+					</form>
+					<%}else{%>
+					<h4>请先登录再评论</h4>
+					<%}%>
+					<div class="comment-list">
+						{{each comments}}
+						<div class="mb10">
+							<div class="article-info">
+								<span class="author">{{$value.uid.username}}</span>
+								<span>{{dateformat($value.publishDate,'yyyy-mm-dd HH:MM:ss')}}</span>
+								<span>{{$value.uid.email}}</span>
+							</div>
+							<div class="comment-content">
+								{{$value.content}}
+							</div>
+						</div>
+						{{/each}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 文章框架结束 -->
+</body>
+
+</html>

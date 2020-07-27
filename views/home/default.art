@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>博客前台</title>
+	<link rel="stylesheet" href="/home/css/base.css">
+	<link rel="stylesheet" href="/home/css/index.css">
+</head>
+
+<body>
+	<!-- 头部框架开始 -->
+	{{include './common/header.art'}}
+	<!-- 头部框架结束 -->
+	<!-- 文章列表开始 -->
+	<ul class="list w1100">
+		{{each articles}}
+		<li class="{{$index%2==0?'fl':'fr'}}">
+			<a href="/home/article?id={{@$value._id}}" class="thumbnail">
+				<img src="images/{{$index+1}}.jpg">
+			</a>
+			<div class="content">
+				<a class="article-title" href="/home/article?id={{@$value._id}}">{{$value.title}}</a>
+				<div class="article-info">
+					<span class="author">{{$value.author.uesrname}}</span>
+					<span>{{dateformat($value.publishDate,'yyyy-mm-dd HH:MM:ss')}}</span>
+				</div>
+				<div class="brief">
+					{{@$value.content}}
+				</div>
+			</div>
+		</li>
+		{{/each}}
+
+	</ul>
+	<!-- 文章列表结束 -->
+
+	<!-- 分页开始 -->
+	<div class="page w1100">
+		<%if(page==1){%>
+		<a href="javascript:;">
+			<%}else{%>
+			<a href="/home/?page=<%=page-1%>">
+				<%}%>上一页</a>
+		<!-- <a href="#" class="active">1</a> -->
+		<% for(var i=1;i<=total;i++){%>
+				<a class="<%=page==i?'active':''%>" href="/home/?page=<%=i%>"><%=i%></a>
+				<%}%>
+                        
+		<%if(page==total){%>
+				<a href="javascript:;">
+					<%}else{%>
+					<a href="/home/?page=<%=page-0+1%>">
+						<%}%>下一页</a>
+	</div>
+	<!-- 分页结束 -->
+</body>
+
+</html>
