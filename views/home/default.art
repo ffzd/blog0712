@@ -17,7 +17,7 @@
 		{{each articles}}
 		<li class="{{$index%2==0?'fl':'fr'}}">
 			<a href="/home/article?id={{@$value._id}}" class="thumbnail">
-				<img src="images/{{$index+1}}.jpg">
+				<img src="images/{{4*(page-1)+$index+1}}.jpg">
 			</a>
 			<div class="content">
 				<a class="article-title" href="/home/article?id={{@$value._id}}">{{$value.title}}</a>
